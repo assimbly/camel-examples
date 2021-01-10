@@ -1,3 +1,4 @@
+## Basic
 ```
 .log("My Log Message")
 
@@ -11,6 +12,15 @@
 
 .log("${exchangeId}")
 
+.log("Reading of file ${header.CamelFileNameOnly} complete.")
+
+.log("Value of primaryOrgId = " + "${exchangeProperty.primaryOrgId}")
+
+```
+
+## With Loglevel
+
+```
 .log(LoggingLevel.INFO, "Transaction file")		
 
 .log(LoggingLevel.INFO, "${body}")
@@ -22,11 +32,12 @@
 .log(LoggingLevel.INFO, "${file:name}")
 
 .log(LoggingLevel.DEBUG, this.getClass().getName(), "${headers} ${body}")
+```
 
-.log("Reading of file ${header.CamelFileNameOnly} complete.")
 
-.log("Value of primaryOrgId = " + "${exchangeProperty.primaryOrgId}")
+## Logging with To endpont
 
+```
 .to("log:myclass.Succes")
 
 .to("log:myclass.Failed?level=ERROR&showAll=true&multiline=true&style=Fixed")
