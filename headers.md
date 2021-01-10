@@ -27,6 +27,8 @@
 ```
 .setHeader("MyHeader", simple("MyValue")
 
+.setHeader("MyHeader", simple("MyValue", String.class)
+
 .setHeader("MyInteger", simple("5", Integer.class))
 
 .setHeader("MyBoolean", simple("true", Boolean.class))
@@ -91,7 +93,7 @@ Set header from external resource:
 ## Set exchange headers 
 
 ```
-.setHeader(Exchange.HTTP_PATH).simple("{{brm.http.path}}")
+.setHeader(Exchange.HTTP_PATH).simple("{{http.path}}")
 .setHeader(Exchange.HTTP_METHOD, constant("GET"))
 .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
 .setHeader(HttpHeaders.AUTHORIZATION, simple("${property.token}"))
@@ -100,7 +102,7 @@ Set header from external resource:
 or 
 
 ```
-.setHeader(Exchange.HTTP_PATH).simple("{{brm.http.path}}")
+.setHeader(Exchange.HTTP_PATH).simple("{{http.path}}")
 .setHeader(Exchange.HTTP_METHOD).simple("POST")
 .setHeader(Exchange.CONTENT_TYPE).simple("application/json")
 .setHeader(HttpHeaders.AUTHORIZATION, simple("${property.token}"))
@@ -124,9 +126,7 @@ or
 
 ```
  .setHeader("param2").groovy("request.headers.param1.equals('on')")
- 
  .setHeader("param2", simple("${header.param1} == 'on'", Boolean.class))
- 
  .setHeader("param2").mvel("request.headers.param1 == 'on'")
 ```
 
