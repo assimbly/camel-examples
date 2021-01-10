@@ -13,5 +13,4 @@ Here you can find various examples, one-liners and snippets.
 - [process](https://github.com/assimbly/camel-examples/blob/main/process.md)
 - [properties](https://github.com/assimbly/camel-examples/blob/main/properties.md)
 - [split](https://github.com/assimbly/camel-examples/blob/main/split.md)
-
-
+- [transform](https://github.com/assimbly/camel-examples/blob/main/transform.md)
