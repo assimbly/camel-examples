@@ -88,6 +88,13 @@
 	.otherwise
 		.log("My header doesn't start with 20")
 .end()
+
+.choice()
+		.when(body().regex(",+\\$"))
+			.log("Body contains $")
+	.otherwise
+		.log("Body does not contain $")
+.end()
 ```	
 
 ## Integer
