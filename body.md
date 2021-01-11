@@ -1,13 +1,33 @@
 
-## Set body
+## Set body from constant
 
 ```
 .setBody(constant("MyValue"))
 
+.setBody().constant("MyValue")
+
+```
+
+## Set body from header
+
+```
 .setBody(header("MyHeader"))
 
+.setBody().header("MyHeader")
+
+```
+
+## Set body from property
+
+```
 .setBody(exchangeProperty("MyProperty"))
 
+```
+
+
+## Set body from simple
+
+```
 .setBody(simple(""))
 
 .setBody().simple("<data>${body}</data>")
@@ -16,8 +36,23 @@
 
 .setBody(simple("Hello from timer at ${header.firedTime}"))
 
-.setBody(body().regexReplaceAll("\\|", "\\|\""))
 ```
+
+## Set body from Jsonpath
+
+```
+.setBody().jsonpath("access_token")
+
+```
+
+
+## Set body misc
+
+```
+.setBody(body().regexReplaceAll("\\|", "\\|\""))
+
+```
+
 
 ## Convert Body
 
