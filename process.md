@@ -1,3 +1,4 @@
+## Basic
 ```
 .process("myProcessor")
 
@@ -11,6 +12,7 @@
 ```
 
 
+## Exchange -->
 ```
 .process(exchange -> {
 	System.out.println(exchange.getIn().getBody());
@@ -39,15 +41,6 @@
 	exchange.getIn().setBody("{\"text\" : \"" + dataArray[1].trim() + "\"}");
 })	
 
-.process(new Processor(){
-	@Override
-	public void process(Exchange exchange) throws Exception {
-		String message = "Hello World";
-		exchange.getIn().setBody(message);
-	}
-	
-})
-
 .process(exchange -> {
 	log.info("Colour decoded successfully.");
 	String colour = exchange.getIn().getBody(String.class);
@@ -61,6 +54,8 @@
 ```
 
 
+
+## New processor()
 ```
 .process(new Processor() {
 	@Override
@@ -68,7 +63,14 @@
 		exchange.getIn().setHeader("JMSDeliveryMode", "1");
    }
 })
-		
+
+.process(new Processor(){
+	@Override
+	public void process(Exchange exchange) throws Exception {
+		String message = "Hello World";
+		exchange.getIn().setBody(message);
+	}	
+})
 
 .process(new Processor() {
 	@Override
