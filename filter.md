@@ -13,6 +13,7 @@
 .filter(body().contains("Foo"))
 .filter(body().convertToString().contains("MyValue"))
 .filter(body().isNotEqualTo(3))
+.filter(bodyAs(String.class).contains("interesting line"))
 ```
 
 ## Filter by simple
@@ -20,6 +21,7 @@
 ```
 .filter(simple('''${header.CACT} == "OBS"'''))
 .filter(simple('''${header.CDPO} == "SAT" or ${header.CDPO} == "LYO"'''))
+.filter(simple("${body} contains 'foo'"))
 ```
 
 ## Filter by JsonPath
