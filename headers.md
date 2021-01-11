@@ -42,6 +42,8 @@
 .setHeader("MyHeader").simple("resource:classpath:mysimple.txt")
 
 .setHeader("payrollId",simple("${body.payrollId}"))
+
+.setHeader("Id",simple("${body['ID']}"))
 ```
 
 ## Set header from body
@@ -68,6 +70,17 @@
 .setHeader("xml_namespace", xpath("namespace-uri(/*)").stringResult().saxon())
 
 .setHeader("category", xpath("/book/@category").stringResult())
+
+```
+
+
+## Set header from groovy
+
+```
+.setHeader("MyHeader").groovy("new Date().getTime()")
+
+.setHeader("MyHeader").groovy("resource:classpath:mygroovy.groovy")
+
 ```
 
 ## Set header from exchange property
