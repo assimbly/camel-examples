@@ -8,6 +8,17 @@
 .process(fileProcessor).log("Came out of file processor")
 
 .process(this::createShuttleObject)
+```
+
+
+```
+.process(exchange -> {
+	System.out.println(exchange.getIn().getBody());
+})
+
+.process(exchange -> {
+	throw new RuntimeException("No good Pal!");
+})				
 
 .process(exchange -> {
 	exchange.getIn().setBody("test message");
@@ -22,6 +33,12 @@
 	variables.put("myBody", body);
 }
 
+.process(exchange -> {
+	String[] dataArray = exchange.getIn().getBody(String.class).split(",", 2);
+	channelName.append(dataArray[0]);
+	exchange.getIn().setBody("{\"text\" : \"" + dataArray[1].trim() + "\"}");
+})	
+
 .process(new Processor(){
 	@Override
 	public void process(Exchange exchange) throws Exception {
@@ -30,24 +47,6 @@
 	}
 	
 })
-
-.process(exchange -> {
-	String[] dataArray = exchange.getIn().getBody(String.class).split(",", 2);
-	channelName.append(dataArray[0]);
-	exchange.getIn().setBody("{\"text\" : \"" + dataArray[1].trim() + "\"}");
-})	
-
-.process(new Processor() {
-	@Override
-	public void process(Exchange exchange) throws Exception {
-		exchange.getIn().setHeader("JMSDeliveryMode", "1");
-   }
-})
-
-.process(exchange -> {
-	System.out.println(exchange.getIn().getBody());
-})
-				
 
 .process(exchange -> {
 	log.info("Colour decoded successfully.");
@@ -59,6 +58,17 @@
 	exchange.getMessage().setBody("modified", String.class);
 	exchange.getMessage().setHeader("x", "y");
 })
+```
+
+
+```
+.process(new Processor() {
+	@Override
+	public void process(Exchange exchange) throws Exception {
+		exchange.getIn().setHeader("JMSDeliveryMode", "1");
+   }
+})
+		
 
 .process(new Processor() {
 	@Override
@@ -78,11 +88,6 @@
 		}
 	}
 })
-
-.process(exchange -> {
-	throw new RuntimeException("No good Pal!");
-})				
-
 
 .process(new Processor() {
 	public void process(Exchange msg) {
