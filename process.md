@@ -5,10 +5,18 @@
 
 .process(exchange -> exchange.getIn().setBody(fallbackResponse, EquipmentListResponse.class))	
 
+.process(fileProcessor).log("Came out of file processor")
+
+.process(this::createShuttleObject)
+
 .process(exchange -> {
 	exchange.getIn().setBody("test message");
 })
- 
+
+.process(exchange -> {
+			Thread.sleep(10000);
+})
+
 .process(exchange -> {
 	String body = exchange.getIn().getBody(String.class);
 	variables.put("myBody", body);
