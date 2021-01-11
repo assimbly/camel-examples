@@ -12,6 +12,8 @@
 .toD("file://" + OUTPUT_PATH + "?FileName=${exchangeProperty.OUTPUT_FILENAME}" + "&FileExist=Append")
 
 .toD(COMPONENT_NAME + "://" + myEndpoint + "?" + camelQueryParams)
+
+.toD("${exchangeProperty.outputEndpoint}", true)					
 ```
 
 ## Fire and Forget
