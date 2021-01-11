@@ -12,6 +12,8 @@
 .split(body().tokenize(",")).streaming()
 
 .split().tokenizeXML("Entry")
+
+.split().tokenize(System.lineSeparator()).aggregationStrategy(new YourAggregationStrategyClass())
 ```
 
 
