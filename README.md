@@ -2,7 +2,7 @@
 
 [Assimbly](https://github.com/assimbly/gateway) uses [Apache Camel](https://camel.apache.org/) as its core technology. Camel often has many ways to do something, but often it's hard to find good examples in one place.
 
-Here you can find various Camel DSL Cheatsheets with examples, one-liners and snippets.
+Here you can find various Camel Cheatsheets for the Java DSL. 
 
 # Cheatcheets
 
