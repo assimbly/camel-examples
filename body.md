@@ -58,8 +58,12 @@
 
 ```
 .convertBodyTo(String.class)
-.convertBodyTo(java.lang.String.class, "UTF-8")
 .convertBodyTo(String.class, "UTF-8")
+.convertBodyTo(java.lang.String.class, "UTF-8")
+
+.convertBodyTo(byte[].class)
 .convertBodyTo(byte[].class, "iso-8859-1")
+
+ .convertBodyTo(com.mongodb.DBObject.class) 
 .convertBodyTo(PaymentMethodResponseBean.class)
 ```
