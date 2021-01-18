@@ -1,29 +1,30 @@
 # Marshalling 
 
-##Marshal
+## Marshal
 
-####JSON to POJO
+### JSON to POJO
     .marshal().json(JsonLibrary.Jackson, DataType.class)
     
     .marshal(jacksonDataFormat)
     
     .marshal(new JacksonDataFormat(DataType.class))
-####CSV to POJO
+### CSV to POJO
     .marshal().bindy(BindyType.Csv, DataType.class)
 
-####XML to POJO
+### XML to POJO
     .marshal().jaxb(DataType.class)
 
-##Unmarshal
+## Unmarshal
 
-####POJO to JSON
+### POJO to JSON
     .unmarshal().json(JsonLibrary.Jackson, DataType.class)
     
     .unmarshal(jacksonDataFormat)
     
     .unmarshal(new JacksonDataFormat(DataType.class))
-####POJO to CSV
+    
+### POJO to CSV
     .unmarshal().bindy(BindyType.Csv, DataType.class)
 
-####POJO to XML
+### POJO to XML
     .unmarshal().jaxb(DataType.class)
