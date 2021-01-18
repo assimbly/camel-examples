@@ -1,4 +1,4 @@
-#Miscellaneous
+# Miscellaneous
 ```
 .routeId("MyRoute")
 
@@ -19,18 +19,17 @@
 .log(" response on Success")
 .doCatch(ValidationException.class)
 ```
-###Enrich/PollEncrich
+### Enrich/PollEncrich
     .pollEnrich("file://source?options")
-###Validator
+
+### Validator
     .to("validator:xsd/MyXsd.xsd")
     .to("json-validator:validator/myJsonSchema.json?errorHandler=#customErrorHandler")
         				
-###Xslt
+### Xslt
     .to("xslt:MyStylesheet.xsl?saxon=true")
-
     .to("xslt:file:{{xslt.cdm.to.target.gettimesheet}}?saxon=true")
 
-###Resequence
+### Resequence
     .resequence(header("seqNum"))
-
     .resequence(simple("${header.priority}")).batch().timeout(30000)
