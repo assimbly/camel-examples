@@ -1,9 +1,9 @@
-#Aggregate
+# Aggregate
 
-###Camel
+### Camel
     .aggregate(constant(true), new MyAggregationStrategy()).completionPredicate(header("CamelSplitComplete").isEqualTo(true)).completionTimeout(10800000).eagerCheckCompletion()
     
-###AggregationStrategy
+### AggregationStrategy
 ```
 public class MyAggregationStrategy implements AggregationStrategy{
 
