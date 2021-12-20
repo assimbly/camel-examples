@@ -106,7 +106,7 @@ Set header from external resource:
 ## Set exchange headers 
 
 ```
-.setHeader(Exchange.HTTP_PATH).simple("{{http.path}}")
+.setHeader(Exchange.HTTP_PATH), simple("{{http.path}}")
 .setHeader(Exchange.HTTP_METHOD, constant("GET"))
 .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
 .setHeader(HttpHeaders.AUTHORIZATION, simple("${property.token}"))
