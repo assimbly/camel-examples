@@ -1,0 +1,47 @@
+<dil>
+    <integrations>
+        <integration>
+            <flows>
+                <flow>
+                    <id>setheader_test1</id>
+                    <name>setheader_test1</name>
+                    <type>esb</type>
+                    <steps>
+                        <step>
+                            <id>1</id>
+                            <type>source</type>
+                            <uri>http://0.0.0.0:9001/1/setproperty</uri>
+                        </step>
+                        <step>
+                            <id>2</id>
+                            <type>action</type>
+                            <uri>setbody:Just a person</uri>
+                        </step>
+                        <step>
+                            <id>3</id>
+                            <type>action</type>
+                            <uri>setheader:firstname</uri>
+							<options>
+								<value>John</value>
+							</options>
+                        </step>
+						<step>
+                            <id>4</id>
+                            <type>action</type>
+                            <uri>setproperty:lastname</uri>
+							<options>
+								<value>Doe</value>
+								<language>simple</language>
+							</options>
+                        </step>
+						<step>
+                            <id>5</id>
+                            <type>sink</type>
+                            <uri>velocity:The body is ${body}. The name is ${header.firstname} ${exchangeProperty.lastname}</uri>
+                        </step>
+                    </steps>
+                </flow>
+            </flows>
+        </integration>
+    </integrations>
+</dil>

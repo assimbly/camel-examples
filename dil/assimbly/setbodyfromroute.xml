@@ -1,0 +1,60 @@
+<dil>
+    <integrations>
+        <integration>
+            <flows>
+                <flow>
+                    <id>routeblock_test1</id>
+                    <name>routeblock_test1</name>
+                    <type>esb</type>
+                    <steps>
+                        <step>
+                            <id>1</id>
+                            <type>source</type>
+                            <uri>http://0.0.0.0:9001/1/setbodyfromroute</uri>
+							<links>
+								<link>
+								   <id>myroute_a</id>
+								   <bound>out</bound>
+								 </link>
+							</links>
+                        </step>
+                        <step>
+                            <id>2</id>
+                            <type>action</type>
+                            <uri>block:1</uri>
+							<blocks>
+								<block>
+								   <id>1</id>
+								   <type>route</type>
+								   <uri>routeblock_test1-2</uri>
+								</block>
+							</blocks>
+                        </step>
+                        <step>
+                            <id>3</id>
+                            <type>sink</type>
+                            <uri>print:Message Body: ${bodyAs(String)}</uri>
+							<links>
+								<link>
+								   <id>myroute_b</id>
+								   <bound>in</bound>
+								 </link>
+							</links>
+                        </step>
+                    </steps>
+                </flow>
+            </flows>
+        </integration>
+    </integrations>
+	<core>
+		<routes>
+			<route id="routeblock_test1-2">
+				<from uri="sync:myroute_a"/>
+				<setBody>
+					<simple>Hello John</simple>
+				</setBody>
+				<to uri="sync:myroute_b"/>
+			</route>
+		</routes>
+	</core>	
+</dil>

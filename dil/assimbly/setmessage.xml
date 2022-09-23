@@ -1,0 +1,43 @@
+<dil>
+    <integrations>
+        <integration>
+            <flows>
+                <flow>
+                    <id>setmessage_test1</id>
+                    <name>setmessage_test1</name>
+                    <type>esb</type>
+                    <steps>
+                        <step>
+                            <id>1</id>
+                            <type>source</type>
+                            <uri>http://0.0.0.0:9000/1/setmessage</uri>
+                        </step>
+                        <step>
+                            <id>2</id>
+                            <type>action</type>
+                            <uri>setmessage:message:names</uri>
+                        </step>
+						<step>
+                            <id>3</id>
+                            <type>sink</type>
+                            <uri>velocity:The body is ${body}. The name is ${header.firstname} ${header.lastname}</uri>
+                        </step>
+                    </steps>
+                </flow>
+            </flows>
+        </integration>
+    </integrations>
+	<core>
+	   <messages>
+         <message>
+            <id>1</id>
+            <name>names</name>
+			<body>John</body>
+            <headers>
+               <firstname type="header" language="simple">${body}</firstname>
+               <lastname type="header" language="constant">Doe</lastname>
+            </headers>
+         </message>
+      </messages>
+	</core>
+</dil>

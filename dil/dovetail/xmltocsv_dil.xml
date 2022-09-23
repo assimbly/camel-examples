@@ -1,0 +1,107 @@
+<dil>
+    <integrations>
+        <integration>
+            <flows>
+                <flow>
+                    <id>xmltocsv_test1</id>
+                    <name>xmltocsv_test1</name>
+                    <type>esb</type>
+                    <steps>
+                        <step>
+                            <id>1</id>
+                            <type>source</type>
+                            <uri>https://0.0.0.0:9001/1/XmlToCsv</uri>
+                        </step>
+                        <step>
+                            <id>2</id>
+                            <type>action</type>
+                            <uri>setbody:message:menu</uri>
+                        </step>
+                        <step>
+                            <id>3</id>
+                            <type>action</type>
+                            <uri>xmltocsv://</uri>
+                            <options>
+                                <includeHeader>true</includeHeader>
+                                <includeIndexColumn>false</includeIndexColumn>
+                                <indexColumnName>line</indexColumnName>
+                                <orderHeaders>UNORDERED</orderHeaders>
+                                <quoteFields>ALL_FIELDS</quoteFields>
+                                <delimiter>RAW(LA==)</delimiter>
+                                <lineSeparator>RAW(XG4=)</lineSeparator>
+                            </options>
+                        </step>
+                        <step>
+                            <id>4</id>
+                            <type>sink</type>
+                            <uri>velocity:Message Body: ${bodyAs(String)}</uri>
+                        </step>
+                    </steps>
+                </flow>
+            </flows>
+        </integration>
+    </integrations>
+    <core>
+        <messages>
+            <message>
+                <id>menu</id>
+                <body><breakfast_menu>
+    <food>
+        <id>1</id>
+        <name>Belgian Waffles</name>
+        <price>$5.95</price>
+        <description>
+       Two of our famous Belgian Waffles with plenty of real maple syrup
+       </description>
+        <calories>650</calories>
+    </food>
+    <food>
+        <id>2</id>
+        <name>Strawberry Belgian Waffles</name>
+        <price>$7.95</price>
+        <description>
+        Light Belgian waffles covered with strawberries and whipped cream
+        </description>
+        <calories>900</calories>
+    </food>
+    <food>
+        <id>3</id>
+        <name>Berry-Berry Belgian Waffles</name>
+        <price>$8.95</price>
+        <description>
+        Belgian waffles covered with assorted fresh berries and whipped cream
+        </description>
+        <calories>900</calories>
+    </food>
+    <food>
+        <id>4</id>
+        <name>French Toast</name>
+        <price>$4.50</price>
+        <description>
+        Thick slices made from our homemade sourdough bread
+        </description>
+        <calories>600</calories>
+    </food>
+    <food>
+        <id>5</id>
+        <name>Homestyle Breakfast</name>
+        <price>$6.95</price>
+        <description>
+        Two eggs, bacon or sausage, toast, and our ever-popular hash browns
+        </description>
+        <calories>950</calories>
+    </food>
+    <food>
+        <id>6</id>
+        <name>Homestyle Breakfast</name>
+        <price>$6.95</price>
+        <description>
+        Two eggs, bacon or sausage, toast, and our ever-popular hash browns
+        </description>
+        <calories>950</calories>
+    </food>
+    </breakfast_menu></body>
+            </message>
+        </messages>
+    </core>
+</dil>

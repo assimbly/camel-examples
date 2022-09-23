@@ -1,0 +1,65 @@
+<dil>
+    <integrations>
+        <integration>
+            <flows>
+                <flow>
+                    <id>wiretap_test1</id>
+                    <name>wiretap_test1</name>
+                    <type>esb</type>
+                    <steps>
+                        <step>
+                            <id>1</id>
+                            <type>source</type>
+                            <uri>https://0.0.0.0:9001/1/Wiretap</uri>
+                        </step>
+                        <step>
+                            <id>2</id>
+                            <type>action</type>
+                            <uri>setbody:<![CDATA[<persons>
+							  <person>
+								<name>John Doe</name>
+							  </person>
+							  <person>
+								<name>Jane Doe</name>
+							  </person>
+							</persons>]]>
+							</uri>
+                        </step>
+                        <step>
+                            <id>3</id>
+                            <type>action</type>
+                            <uri>wiretap:activemq:ID_1234</uri>
+                        </step>
+                        <step>
+                            <id>4</id>
+                            <type>sink</type>
+                            <uri>velocity:Message Body: ${bodyAs(String)}</uri>
+                        </step>
+						<step>
+                            <id>5</id>
+                            <type>sink</type>
+                            <uri>log:Wiretap message</uri>
+							<options>
+							   <skipBodyLineSeparator>false</skipBodyLineSeparator>
+							   <multiline>true</multiline>
+							   <showHeaders>false</showHeaders>
+							   <showBody>true</showBody>
+							   <showBodyType>true</showBodyType>
+							   <showFiles>true</showFiles>
+							   <showException>false</showException>
+							   <showStackTrace>false</showStackTrace>
+							</options>
+							<links>
+								<link>
+									<id>ID_1234</id>
+									<transport>activemq</transport>
+									<bound>in</bound>
+								</link>							
+							</links>
+                        </step>
+                    </steps>
+                </flow>
+            </flows>
+        </integration>
+    </integrations>
+</dil>

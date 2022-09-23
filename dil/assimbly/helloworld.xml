@@ -1,0 +1,13 @@
+<flow>
+   <name>HelloWorld</name>
+   <steps>
+      <step>
+         <type>source</type>
+         <uri>timer:foo</uri>
+       </step>
+      <step>
+         <type>sink</type>
+         <uri>print:Hello World!</uri>
+      </step>
+   </steps>
+</flow>

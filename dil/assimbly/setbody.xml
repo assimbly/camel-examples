@@ -1,0 +1,30 @@
+<dil>
+    <integrations>
+        <integration>
+            <flows>
+                <flow>
+                    <id>setbody_test1</id>
+                    <name>setbody_test1</name>
+                    <type>esb</type>
+                    <steps>
+                        <step>
+                            <id>1</id>
+                            <type>source</type>
+                            <uri>http://0.0.0.0:9001/1/setbody</uri>
+                        </step>
+                        <step>
+                            <id>2</id>
+                            <type>action</type>
+                            <uri>setbody:This is my body</uri>
+                        </step>
+                        <step>
+                            <id>3</id>
+                            <type>sink</type>
+                            <uri>print:Message Body: ${bodyAs(String)}</uri>
+                        </step>
+                    </steps>
+                </flow>
+            </flows>
+        </integration>
+    </integrations>
+</dil>

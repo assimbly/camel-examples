@@ -1,0 +1,60 @@
+<dil>
+	<integrations>
+		<integration>
+			<flows>
+				<flow>
+					<id>xmltoexel_test1</id>
+					<name>xmltoexcel_test1</name>
+					<type>esb</type>
+					<steps>
+						<step>
+							<id>1</id>
+							<type>source</type>
+							<uri>https://0.0.0.0:9001/1/XmlToExcel</uri>
+						</step>
+						<step>
+							<id>2</id>
+							<type>action</type>
+							<uri>setbody:message:menu</uri>
+						</step>
+						<step>
+							<id>3</id>
+							<type>action</type>
+							<uri>xmltoexcel://</uri>
+							<options>
+								<includeHeader>true</includeHeader>
+								<includeIndexColumn>false</includeIndexColumn>
+								<indexColumnName>line</indexColumnName>
+								<orderHeaders>UNORDERED</orderHeaders>
+								<excelFormat>XLSX</excelFormat>
+							</options>
+						</step>
+						<step>
+							<id>4</id>
+							<type>sink</type>
+							<uri>velocity:Message Body: ${bodyAs(String)}</uri>
+						</step>
+					</steps>
+				</flow>
+			</flows>
+		</integration>
+	</integrations>
+	<core>
+		<messages>
+			<message>
+				<id>menu</id>
+				<body><breakfast_menu>
+    <food>
+        <id>1</id>
+        <name>Belgian Waffles</name>
+        <price>$5.95</price>
+        <description>
+       Two of our famous Belgian Waffles with plenty of real maple syrup
+       </description>
+        <calories>650</calories>
+    </food>
+    </breakfast_menu></body>
+			</message>
+		</messages>
+	</core>
+</dil>
